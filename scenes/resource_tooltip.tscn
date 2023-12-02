@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5c4wryt3rrle"]
+
+[ext_resource type="Script" path="res://scripts/ResourcesSummary.gd" id="1_6s88i"]
+
+[node name="ResourcesSummary" type="MarginContainer"]
+custom_minimum_size = Vector2(154, 96)
+offset_right = 154.0
+offset_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_6s88i")
+
+[node name="Table" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 2
+
+[node name="Strength" type="Label" parent="Table"]
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 1
+text = "Strength:"
+
+[node name="StrengthBar" type="ProgressBar" parent="Table"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+max_value = 1.0
+show_percentage = false
+
+[node name="Volatility" type="Label" parent="Table"]
+layout_mode = 2
+mouse_filter = 1
+text = "Volatility:"
+
+[node name="VolatilityBar" type="ProgressBar" parent="Table"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+max_value = 1.0
+show_percentage = false
+
+[node name="Magic" type="Label" parent="Table"]
+layout_mode = 2
+mouse_filter = 1
+text = "Magic:"
+
+[node name="MagicBar" type="ProgressBar" parent="Table"]
+modulate = Color(0, 0, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+max_value = 1.0
+show_percentage = false
