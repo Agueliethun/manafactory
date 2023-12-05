@@ -30,12 +30,15 @@ static func generate_materials() -> Dictionary:
 		mat.strength = strength_percent * quality
 		mat.volatility = volatility_percent * quality
 		mat.magic = magic_percent * quality
-		mat.mat_id
-
-		MATERIALS[MATS_ID] = mat
-		MATS_ID += 1
+		
+		add_material(mat)
 	
 	return MATERIALS
+
+static func add_material(mat : MFMaterial):
+	mat.mat_id = MATS_ID
+	MATERIALS[MATS_ID] = mat
+	MATS_ID += 1
 
 func get_color():
 	return Color(strength, volatility, magic, 1)

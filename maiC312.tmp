@@ -1,0 +1,201 @@
+[gd_scene load_steps=18 format=3 uid="uid://cvw5hcjay3t66"]
+
+[ext_resource type="Texture2D" uid="uid://b3cx6t0rbt4vq" path="res://tilemaps/tileset.png" id="1_lbvaa"]
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_p6bop"]
+[ext_resource type="PackedScene" uid="uid://2q2lj5xo2ynu" path="res://scenes/core.tscn" id="2_omuca"]
+[ext_resource type="Script" path="res://scripts/TileMap.gd" id="2_qs14y"]
+[ext_resource type="PackedScene" uid="uid://cb3mh862u6hei" path="res://scenes/resource.tscn" id="3_unsmu"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="4_r7xkf"]
+[ext_resource type="Script" path="res://scripts/Tooltip.gd" id="5_evqjw"]
+[ext_resource type="Script" path="res://BuildMenu.gd" id="7_yk6pv"]
+[ext_resource type="PackedScene" uid="uid://c5u4hhoxovjdy" path="res://scenes/extractor.tscn" id="8_kqfnp"]
+[ext_resource type="PackedScene" uid="uid://2pbxixvwni55" path="res://scenes/build_button.tscn" id="8_mwmn1"]
+[ext_resource type="Script" path="res://ResourceSelectionPopup.gd" id="11_gjpu0"]
+[ext_resource type="PackedScene" uid="uid://c7g16mw2mhn8w" path="res://scenes/resource_selection_row_button.tscn" id="12_244ao"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kfaxe"]
+texture = ExtResource("1_lbvaa")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_pkd5h"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_kfaxe")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_51d6q"]
+frequency = 0.003
+fractal_octaves = 6
+fractal_lacunarity = 3.0
+fractal_gain = 0.4
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xrgin"]
+frequency = 0.006
+fractal_gain = 0.6
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vfymy"]
+seed = 3
+fractal_octaves = 2
+fractal_gain = 0.1
+
+[node name="Control" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p6bop")
+core_scene = ExtResource("2_omuca")
+
+[node name="World" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_pkd5h")
+format = 2
+script = ExtResource("2_qs14y")
+stone = SubResource("FastNoiseLite_51d6q")
+wall = SubResource("FastNoiseLite_xrgin")
+water = SubResource("FastNoiseLite_vfymy")
+resource = ExtResource("3_unsmu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_mode = 3
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("4_r7xkf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="TopMenu" type="PanelContainer" parent="CanvasLayer"]
+offset_right = 113.0
+offset_bottom = 61.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TopMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/TopMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TopMenu/MarginContainer/HFlowContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/TopMenu/MarginContainer/HFlowContainer/HBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+
+[node name="BuildMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -61.0
+offset_bottom = 86.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/BuildMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/BuildMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("7_yk6pv")
+build_button_scene = ExtResource("8_mwmn1")
+default_buildings = [ExtResource("8_kqfnp")]
+
+[node name="Tooltip" type="PanelContainer" parent="CanvasLayer"]
+process_mode = 3
+offset_right = 91.0
+offset_bottom = 126.0
+mouse_filter = 2
+script = ExtResource("5_evqjw")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Tooltip"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VF" type="VBoxContainer" parent="CanvasLayer/Tooltip/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/Tooltip/MarginContainer/VF"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Resource"
+horizontal_alignment = 1
+
+[node name="Container" type="HFlowContainer" parent="CanvasLayer/Tooltip/MarginContainer/VF"]
+layout_mode = 2
+
+[node name="BottomMenu" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/BottomMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Description" type="Label" parent="CanvasLayer/BottomMenu/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="ResourceSelectionPopup" type="PanelContainer" parent="CanvasLayer"]
+process_mode = 3
+offset_left = 413.0
+offset_top = 300.0
+offset_right = 604.0
+offset_bottom = 397.0
+script = ExtResource("11_gjpu0")
+row_scene = ExtResource("12_244ao")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ResourceSelectionPopup"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ResourceSelectionPopup/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ResourceSelectionPopup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/ResourceSelectionPopup/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Choose a Resource to Build With:"
+autowrap_mode = 3
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/ResourceSelectionPopup/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "X"
+
+[node name="Tick" type="Node" parent="."]

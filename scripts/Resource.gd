@@ -19,3 +19,8 @@ func get_content_table():
 
 func get_mfmaterial():
 	return MFMaterial.get_material_by_id(material_id)
+
+func _gui_input(event):
+	if event is InputEventMouseButton:
+		if event.is_action("primary") and event.is_action_released("primary"):
+			$/root/Control.harvest_manual(self)

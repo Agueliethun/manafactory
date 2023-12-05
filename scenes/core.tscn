@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://2q2lj5xo2ynu"]
+[gd_scene load_steps=37 format=3 uid="uid://2q2lj5xo2ynu"]
 
 [ext_resource type="Script" path="res://scripts/Building.gd" id="1_buh88"]
 [ext_resource type="Texture2D" uid="uid://dp2rmctopbgoc" path="res://images/core/0001.png" id="3_brfv0"]
@@ -32,6 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://dvc7f25x388jm" path="res://images/core/0029.png" id="31_lbqma"]
 [ext_resource type="Texture2D" uid="uid://c0sj8troif4pk" path="res://images/core/0030.png" id="32_pstds"]
 [ext_resource type="PackedScene" uid="uid://cgqtnl0wasoxl" path="res://scenes/health.tscn" id="32_uyohs"]
+[ext_resource type="Script" path="res://scripts/StandardBuildingPlacement.gd" id="33_bayxr"]
+[ext_resource type="PackedScene" uid="uid://cfkk78uy4lhls" path="res://scenes/inventory.tscn" id="33_y1hh5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gxvek"]
 animations = [{
@@ -131,6 +133,9 @@ animations = [{
 "speed": 24.0
 }]
 
+[sub_resource type="Resource" id="Resource_q5j6q"]
+script = ExtResource("33_bayxr")
+
 [node name="Core" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -145,7 +150,6 @@ title = "Core"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 process_mode = 3
-modulate = Color(0.45098, 0.45098, 0.45098, 1)
 sprite_frames = SubResource("SpriteFrames_gxvek")
 autoplay = "default"
 centered = false
@@ -153,3 +157,7 @@ centered = false
 [node name="Health" parent="." instance=ExtResource("32_uyohs")]
 max_health = 25.0
 health = 25.0
+placement = SubResource("Resource_q5j6q")
+
+[node name="Inventory" parent="." instance=ExtResource("33_y1hh5")]
+max_size = 400

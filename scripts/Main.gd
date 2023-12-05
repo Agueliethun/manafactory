@@ -4,29 +4,75 @@ var building : Building = null
 var build_settings = {}
 
 @export var core_scene : PackedScene
+var core : Building = null
+
+var tutorial_progress = 0
+var tutorial = [
+	"Gather a resource by clicking it. This will place it in your core. 
+	\nYou can then use core resources to construct new buildings.",
+	"Construct an extractor to automatically collect resources for you.
+	\nThe resources you build with will determine the building's stats.",
+]
+
+var manual_cd := 0.0
+
+var perfect_mat 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().paused = true
 	
-	var core = core_scene.instantiate()
+	core = core_scene.instantiate()
+	
+	perfect_mat = MFMaterial.new()
+	perfect_mat.strength = 1.0
+	perfect_mat.volatility = 1.0
+	perfect_mat.magic = 1.0
+	
+	MFMaterial.add_material(perfect_mat)
+	perfect_mat = perfect_mat.mat_id
 	
 	build(core)
 	pass # Replace with function body.
 
-func build(building):
+func build(building : Building):
 	if self.building != null:
 		return
 	
-	$CanvasLayer/BottomMenu/MarginContainer/Description.text = "Building: " + building.title + "\n" + building.description
-	$CanvasLayer/BottomMenu.visible = true
+	var mat = perfect_mat
+	
+	if building.cost != null:
+		get_tree().paused = true
+		
+		if !core or !core.get_inventory(true, true).items:
+			return
+		
+		var mats = core.get_inventory(true, true).items.keys()
+		mat = await $CanvasLayer/ResourceSelectionPopup.choose_resource(mats)
+		
+		if mat == null:
+			return
+		
+		get_tree().paused = false
+	
+	show_bottom_text("Building: " + building.title + "\n" + building.description)
 	
 	self.building = building
-	self.build_settings = {"unique" : building.unique, "unpause" : building.unpause, "required" : building.required}
+	self.build_settings = {"unique" : building.unique, "unpause" : building.unpause, "required" : building.required, "material" : mat}
 	add_child(building)
+
+func show_tutorial_text():
+	$CanvasLayer/BottomMenu/MarginContainer/Description.text = "Objective " + str(tutorial_progress + 1) + ":\n" + tutorial[tutorial_progress]
+	$CanvasLayer/BottomMenu.visible = true
+
+func show_bottom_text(text : String):
+	$CanvasLayer/BottomMenu/MarginContainer/Description.text = text
+	$CanvasLayer/BottomMenu.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	manual_cd += delta
+	
 	if building == null or build_settings == null:
 		return
 	
@@ -41,7 +87,10 @@ func _process(delta):
 func process_input(pos, delta):
 	if building == null or build_settings == null:
 		return
-		
+	
+	if Input.is_action_just_released("secondary"):
+		remove_build_data()
+	
 	if Input.is_action_just_pressed("primary"):
 		build_settings["start"] = pos
 	elif Input.is_action_just_released("primary") and build_settings.has("start"):
@@ -72,13 +121,48 @@ func finish_build():
 	remove_build_data()
 
 func build_building(pos):
+	var material : MFMaterial = MFMaterial.get_material_by_id(build_settings["material"])
+	
 	var building_instance = building.duplicate(15)
 	$Tick.add_child(building_instance)
 	building_instance.position = pos * 128.0
+	building_instance.mat_id = material.mat_id
 	building_instance.place(pos)
+	
+	if building == core:
+		core = building_instance
+	else:
+		core.add_resource(material, -1)
+	
+	for module in building.get_children():
+		for child in module.get_children():
+			if child is Extractor:
+				tutorial_progress += 1
+				update_tutorial()
+				break
 
 func remove_build_data():
-	$CanvasLayer/BottomMenu.visible = false
+	update_tutorial()
+	
 	building.queue_free()
 	building = null
 	build_settings = null
+
+func update_tutorial():
+	if tutorial_progress >= tutorial.size():
+		$CanvasLayer/BottomMenu.visible = false
+	else:
+		show_tutorial_text()
+
+func harvest_manual(resource : MFResource):
+	if manual_cd <= 1 or core == null or building != null:
+		return
+	
+	manual_cd = 0
+	
+	core.add_resource(resource.get_mfmaterial(), 1)
+	
+	if tutorial_progress == 0:
+		tutorial_progress += 1
+	
+	update_tutorial()

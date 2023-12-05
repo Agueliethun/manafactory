@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b1xv5grqmf7r7"]
 
-[ext_resource type="Script" path="res://scripts/HealthSummary.gd" id="1_4rh1c"]
+[ext_resource type="Script" path="res://scripts/HealthTooltip.gd" id="1_4rh1c"]
 
 [node name="Table" type="MarginContainer"]
 custom_minimum_size = Vector2(140, 25)

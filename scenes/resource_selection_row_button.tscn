@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7g16mw2mhn8w"]
+
+[ext_resource type="Script" path="res://ResourceSelectionRowButton.gd" id="1_igc7p"]
+[ext_resource type="Texture2D" uid="uid://p8pd40lbmb3w" path="res://images/resource/0001.png" id="2_7y4sd"]
+
+[node name="ResourceRowButton" type="Button"]
+text = "1"
+alignment = 2
+expand_icon = true
+script = ExtResource("1_igc7p")
+
+[node name="ResourceIcon" type="TextureRect" parent="."]
+modulate = Color(0.34902, 0.129412, 1, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+texture = ExtResource("2_7y4sd")
+expand_mode = 2
+stretch_mode = 5

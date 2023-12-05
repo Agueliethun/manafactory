@@ -1,9 +1,12 @@
-[gd_scene load_steps=64 format=3 uid="uid://c5u4hhoxovjdy"]
+[gd_scene load_steps=70 format=3 uid="uid://c5u4hhoxovjdy"]
 
 [ext_resource type="Script" path="res://scripts/Extractor.gd" id="1_0lqxs"]
+[ext_resource type="Script" path="res://scripts/Building.gd" id="1_e80xb"]
 [ext_resource type="Texture2D" uid="uid://dlppvews5qlnn" path="res://images/extractor/0001.png" id="2_6wxnq"]
+[ext_resource type="Script" path="res://scripts/BuildingCost.gd" id="2_8d0ym"]
 [ext_resource type="Texture2D" uid="uid://kgi0bkjeb052" path="res://images/extractor_resource/0001.png" id="2_krthm"]
 [ext_resource type="Texture2D" uid="uid://du0u5qiknljy4" path="res://images/extractor/0002.png" id="3_6cn03"]
+[ext_resource type="Script" path="res://scripts/ResourceBuildingPlacement.gd" id="3_btoun"]
 [ext_resource type="Texture2D" uid="uid://88md4ajfsbb1" path="res://images/extractor_resource/0002.png" id="3_mk2yk"]
 [ext_resource type="Texture2D" uid="uid://dkcyroergeraj" path="res://images/extractor/0003.png" id="4_7u67g"]
 [ext_resource type="Texture2D" uid="uid://cj7bqoq03f2v8" path="res://images/extractor_resource/0003.png" id="4_g3qu0"]
@@ -62,6 +65,10 @@
 [ext_resource type="Texture2D" uid="uid://c4b54wgqy6vc7" path="res://images/extractor/0030.png" id="31_gyw1l"]
 [ext_resource type="Texture2D" uid="uid://bm1wsa5pqngkv" path="res://images/extractor_resource/0030.png" id="31_u5cma"]
 [ext_resource type="PackedScene" uid="uid://cgqtnl0wasoxl" path="res://scenes/health.tscn" id="62_m8ftw"]
+[ext_resource type="PackedScene" uid="uid://cfkk78uy4lhls" path="res://scenes/inventory.tscn" id="63_ov2ak"]
+
+[sub_resource type="Resource" id="Resource_5xeo5"]
+script = ExtResource("2_8d0ym")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gxvek"]
 animations = [{
@@ -256,23 +263,38 @@ animations = [{
 "speed": 24.0
 }]
 
-[node name="Extractor" type="Control"]
+[sub_resource type="Resource" id="Resource_0n4t8"]
+script = ExtResource("3_btoun")
+
+[node name="Building" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 128.0
 offset_bottom = 128.0
-script = ExtResource("1_0lqxs")
-description = "Extracts resources from mana crystals"
+script = ExtResource("1_e80xb")
+description = "Extracts resources from mana crystals."
+cost = SubResource("Resource_5xeo5")
 title = "Extractor"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 process_mode = 3
-modulate = Color(0.45098, 0.45098, 0.45098, 1)
 sprite_frames = SubResource("SpriteFrames_gxvek")
-animation = &"unplaced"
+animation = &"with_resource"
 autoplay = "unplaced"
 centered = false
 
 [node name="Health" parent="." instance=ExtResource("62_m8ftw")]
 max_health = 15.0
 health = 15.0
+
+[node name="Extractor" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+mouse_filter = 2
+script = ExtResource("1_0lqxs")
+placement = SubResource("Resource_0n4t8")
+
+[node name="Inventory" parent="." instance=ExtResource("63_ov2ak")]
+max_size = 5
+input = false

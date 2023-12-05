@@ -5,8 +5,12 @@ static var ID = 0
 var tt_id
 @export var title := ""
 
+var hovering = false
+
 func add_content_to_table(container):
-	container.add_child(get_content_table())
+	var content = get_content_table()
+	if content:
+		container.add_child(content)
 	
 	for child in get_children():
 		if child.has_method("add_content_to_table"):
@@ -24,8 +28,10 @@ func _ready():
 	ID += 1
 
 func show_tooltip():
-	if visible:
+	if visible and !get_parent() is Tooltippable:
+		hovering = true
 		$/root/Control/CanvasLayer/Tooltip.show_tooltip(self)
 
 func hide_tooltip():
+	hovering = false
 	$/root/Control/CanvasLayer/Tooltip.hide_tooltip(self)

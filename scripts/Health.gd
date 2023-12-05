@@ -1,4 +1,4 @@
-class_name Health extends Tooltippable
+class_name Health extends BuildingModule
 
 @export var max_health := 0.0
 @export var health := 0.0
