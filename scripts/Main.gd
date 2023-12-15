@@ -3,7 +3,7 @@ extends Control
 var building : Building = null
 var build_settings = {}
 
-@export var core_scene : PackedScene
+var core_scene := preload("res://scenes/buildings/core.tscn")
 var core : Building = null
 
 var tutorial_progress = 0
@@ -44,21 +44,35 @@ func build(building : Building):
 	if building.cost != null:
 		get_tree().paused = true
 		
-		if !core or !core.get_inventory(true, true).items:
+		if !core:
+			return
+			
+		var inventory = core.get_inventory(true, true)
+		
+		var items = inventory.items
+		if !items or inventory.inventory_size <= 0:
 			return
 		
-		var mats = core.get_inventory(true, true).items.keys()
-		mat = await $CanvasLayer/ResourceSelectionPopup.choose_resource(mats)
-		
+		mat = await $CanvasLayer/ResourceSelectionPopup.choose_resource(inventory)
 		if mat == null:
 			return
+			
+		building.set_mfmaterial(mat)
 		
 		get_tree().paused = false
 	
 	show_bottom_text("Building: " + building.title + "\n" + building.description)
 	
 	self.building = building
-	self.build_settings = {"unique" : building.unique, "unpause" : building.unpause, "required" : building.required, "material" : mat}
+	self.build_settings = {
+		"unique" : building.unique, 
+		"unpause" : building.unpause, 
+		"required" : building.required, 
+		"material" : mat,
+		"facing" : building.facing}
+		
+	building.update_facing()
+		
 	add_child(building)
 
 func show_tutorial_text():
@@ -88,11 +102,17 @@ func process_input(pos, delta):
 	if building == null or build_settings == null:
 		return
 	
-	if Input.is_action_just_released("secondary"):
+	if Input.is_action_just_released("secondary") and !build_settings["unique"]:
 		remove_build_data()
 	
 	if Input.is_action_just_pressed("primary"):
 		build_settings["start"] = pos
+	elif Input.is_action_just_released("rotate_up"):
+		building.rotate(1)
+		build_settings.facing = building.facing
+	elif Input.is_action_just_pressed("rotate_down"):
+		building.rotate(-1)
+		build_settings.facing = building.facing
 	elif Input.is_action_just_released("primary") and build_settings.has("start"):
 		build_settings["end"] = pos
 		
@@ -123,11 +143,15 @@ func finish_build():
 func build_building(pos):
 	var material : MFMaterial = MFMaterial.get_material_by_id(build_settings["material"])
 	
-	var building_instance = building.duplicate(15)
+	var building_instance = building.duplicate()
 	$Tick.add_child(building_instance)
 	building_instance.position = pos * 128.0
-	building_instance.mat_id = material.mat_id
-	building_instance.place(pos)
+	building_instance.set_mfmaterial(material.mat_id)
+	building_instance.place(pos, build_settings)
+	building_instance.facing = building.facing
+	building_instance.update_facing()
+	
+	$World.add_building(pos, building_instance)
 	
 	if building == core:
 		core = building_instance
@@ -135,11 +159,10 @@ func build_building(pos):
 		core.add_resource(material, -1)
 	
 	for module in building.get_children():
-		for child in module.get_children():
-			if child is Extractor:
-				tutorial_progress += 1
-				update_tutorial()
-				break
+		if module is Extractor:
+			tutorial_progress += 1
+			update_tutorial()
+			break
 
 func remove_build_data():
 	update_tutorial()
@@ -166,3 +189,6 @@ func harvest_manual(resource : MFResource):
 		tutorial_progress += 1
 	
 	update_tutorial()
+
+func add_material(mat_id, amount):
+	core.add_resource(mat_id, amount)

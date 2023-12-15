@@ -1,0 +1,225 @@
+[gd_scene load_steps=52 format=3 uid="uid://1wfoto2x1h7v"]
+
+[ext_resource type="Script" path="res://scripts/classes/Building.gd" id="1_wwaxf"]
+[ext_resource type="Texture2D" uid="uid://dp2rmctopbgoc" path="res://images/core/0001.png" id="2_dgtxv"]
+[ext_resource type="Script" path="res://scripts/classes/BuildingCost.gd" id="2_pi4u3"]
+[ext_resource type="Texture2D" uid="uid://bg0l3hf6aoyon" path="res://images/core/0002.png" id="3_c44gi"]
+[ext_resource type="Texture2D" uid="uid://dai0snrxeas8" path="res://images/core/0003.png" id="4_jdxjo"]
+[ext_resource type="Texture2D" uid="uid://cccslgnpqqxn3" path="res://images/core/0004.png" id="5_0wlwg"]
+[ext_resource type="Texture2D" uid="uid://d2t1la104ajh3" path="res://images/core/0005.png" id="6_i001x"]
+[ext_resource type="Texture2D" uid="uid://dhetpgaxs8ub5" path="res://images/core/0006.png" id="7_n1pta"]
+[ext_resource type="Texture2D" uid="uid://dwyrtmo0edcrh" path="res://images/core/0007.png" id="8_oufu0"]
+[ext_resource type="Texture2D" uid="uid://d1gn8k1tkd8eh" path="res://images/core/0008.png" id="9_r7ob4"]
+[ext_resource type="Texture2D" uid="uid://badfux3bnbg17" path="res://images/core/0009.png" id="10_6hvlp"]
+[ext_resource type="Texture2D" uid="uid://cgqosx0um8iip" path="res://images/core/0010.png" id="11_xdaep"]
+[ext_resource type="Texture2D" uid="uid://cq2ed84f4wrm" path="res://images/core/0011.png" id="12_8pi1l"]
+[ext_resource type="Texture2D" uid="uid://cifnmnqma6rc5" path="res://images/core/0012.png" id="13_xlyhi"]
+[ext_resource type="Texture2D" uid="uid://dydx6ueg027tp" path="res://images/core/0013.png" id="14_lbmij"]
+[ext_resource type="Texture2D" uid="uid://ccpwlnmrsd80l" path="res://images/core/0014.png" id="15_vfj2r"]
+[ext_resource type="Texture2D" uid="uid://v6psd2v5ble8" path="res://images/core/0015.png" id="16_acp56"]
+[ext_resource type="Texture2D" uid="uid://du8x3fvueokpe" path="res://images/core/0016.png" id="17_b03u8"]
+[ext_resource type="Texture2D" uid="uid://c3rqg04wifytx" path="res://images/core/0017.png" id="18_4a64f"]
+[ext_resource type="Texture2D" uid="uid://bn4a1qgk4xter" path="res://images/core/0018.png" id="19_65fbk"]
+[ext_resource type="Texture2D" uid="uid://c7g3ksltpgi5f" path="res://images/core/0019.png" id="20_mecxp"]
+[ext_resource type="Texture2D" uid="uid://dy5bgu4emr84b" path="res://images/core/0020.png" id="21_namyw"]
+[ext_resource type="Texture2D" uid="uid://b84dshbwi01gr" path="res://images/core/0021.png" id="22_lqfe7"]
+[ext_resource type="Texture2D" uid="uid://5xsv1wnb6mmu" path="res://images/core/0022.png" id="23_q04aw"]
+[ext_resource type="Texture2D" uid="uid://be2d8x1dk0bby" path="res://images/core/0023.png" id="24_pgjqn"]
+[ext_resource type="Texture2D" uid="uid://bbeudj46cpi5g" path="res://images/core/0024.png" id="25_sb10i"]
+[ext_resource type="Texture2D" uid="uid://dnp6eoy6vjp7b" path="res://images/core/0025.png" id="26_vig76"]
+[ext_resource type="Texture2D" uid="uid://btisukmul8ub0" path="res://images/core/0026.png" id="27_qbcig"]
+[ext_resource type="Texture2D" uid="uid://dfww15ckvg4fa" path="res://images/core/0027.png" id="28_5f2kp"]
+[ext_resource type="Texture2D" uid="uid://dlfia762coc74" path="res://images/core/0028.png" id="29_t8feg"]
+[ext_resource type="Texture2D" uid="uid://dvc7f25x388jm" path="res://images/core/0029.png" id="30_0045f"]
+[ext_resource type="Texture2D" uid="uid://c0sj8troif4pk" path="res://images/core/0030.png" id="31_12147"]
+[ext_resource type="Script" path="res://scripts/modules/Health.gd" id="32_ufsce"]
+[ext_resource type="Script" path="res://scripts/classes/StandardBuildingPlacement.gd" id="33_lsvfi"]
+[ext_resource type="Script" path="res://scripts/stats/ConstantProvider.gd" id="34_01tue"]
+[ext_resource type="Script" path="res://scripts/modules/Inventory.gd" id="34_e6fud"]
+[ext_resource type="Script" path="res://scripts/stats/MaterialValueProvider.gd" id="35_b55qr"]
+[ext_resource type="Script" path="res://scripts/stats/MathProvider.gd" id="36_d3y5f"]
+
+[sub_resource type="Resource" id="Resource_ksr07"]
+script = ExtResource("2_pi4u3")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gxvek"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dgtxv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c44gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jdxjo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0wlwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i001x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_n1pta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_oufu0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_r7ob4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6hvlp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_xdaep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_8pi1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xlyhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lbmij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_vfj2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_acp56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_b03u8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_4a64f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_65fbk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_mecxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_namyw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_lqfe7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_q04aw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_pgjqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_sb10i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_vig76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_qbcig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_5f2kp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_t8feg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_0045f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_12147")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="Resource" id="Resource_yf7v2"]
+script = ExtResource("34_01tue")
+value = 1.0
+
+[sub_resource type="Resource" id="Resource_5bt20"]
+script = ExtResource("34_01tue")
+value = 5.0
+
+[sub_resource type="Resource" id="Resource_5p44r"]
+script = ExtResource("35_b55qr")
+material_value = 0
+
+[sub_resource type="Resource" id="Resource_abd6l"]
+script = ExtResource("36_d3y5f")
+a = SubResource("Resource_5bt20")
+b = SubResource("Resource_5p44r")
+operation = 2
+
+[sub_resource type="Resource" id="Resource_60sdt"]
+script = ExtResource("36_d3y5f")
+a = SubResource("Resource_yf7v2")
+b = SubResource("Resource_abd6l")
+operation = 0
+
+[sub_resource type="Resource" id="Resource_8e2wc"]
+script = ExtResource("33_lsvfi")
+
+[sub_resource type="Resource" id="Resource_vp0y8"]
+script = ExtResource("34_01tue")
+value = 5.0
+
+[sub_resource type="Resource" id="Resource_3vnuu"]
+script = ExtResource("34_01tue")
+value = 15.0
+
+[sub_resource type="Resource" id="Resource_vlx8m"]
+script = ExtResource("35_b55qr")
+material_value = 1
+
+[sub_resource type="Resource" id="Resource_1betv"]
+script = ExtResource("36_d3y5f")
+a = SubResource("Resource_3vnuu")
+b = SubResource("Resource_vlx8m")
+operation = 2
+
+[sub_resource type="Resource" id="Resource_pinx3"]
+script = ExtResource("36_d3y5f")
+a = SubResource("Resource_vp0y8")
+b = SubResource("Resource_1betv")
+operation = 0
+
+[node name="Store" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_wwaxf")
+description = "Stores resources. Storage size scales with magic."
+cost = SubResource("Resource_ksr07")
+title = "Store"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+process_mode = 3
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_gxvek")
+autoplay = "default"
+centered = false
+offset = Vector2(64, 64)
+
+[node name="Health" type="Control" parent="."]
+anchors_preset = 0
+script = ExtResource("32_ufsce")
+max_health = SubResource("Resource_60sdt")
+placement = SubResource("Resource_8e2wc")
+
+[node name="Inventory" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("34_e6fud")
+max_size = SubResource("Resource_pinx3")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://do6r8mf23n3te"]
+
+[ext_resource type="Script" path="res://scripts/ui/tooltips/MovementTooltip.gd" id="1_cvh5s"]
+
+[node name="Table" type="MarginContainer"]
+custom_minimum_size = Vector2(140, 25)
+offset_right = 154.0
+offset_bottom = 37.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_cvh5s")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "MS : 35.87 U/s"
+horizontal_alignment = 1
+vertical_alignment = 1

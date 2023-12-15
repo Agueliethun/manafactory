@@ -1,28 +1,94 @@
-[gd_scene load_steps=18 format=3 uid="uid://cvw5hcjay3t66"]
+[gd_scene load_steps=58 format=3 uid="uid://cvw5hcjay3t66"]
 
 [ext_resource type="Texture2D" uid="uid://b3cx6t0rbt4vq" path="res://tilemaps/tileset.png" id="1_lbvaa"]
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_p6bop"]
-[ext_resource type="PackedScene" uid="uid://2q2lj5xo2ynu" path="res://scenes/core.tscn" id="2_omuca"]
-[ext_resource type="Script" path="res://scripts/TileMap.gd" id="2_qs14y"]
 [ext_resource type="PackedScene" uid="uid://cb3mh862u6hei" path="res://scenes/resource.tscn" id="3_unsmu"]
-[ext_resource type="Script" path="res://scripts/Camera.gd" id="4_r7xkf"]
-[ext_resource type="Script" path="res://scripts/Tooltip.gd" id="5_evqjw"]
-[ext_resource type="Script" path="res://BuildMenu.gd" id="7_yk6pv"]
-[ext_resource type="PackedScene" uid="uid://c5u4hhoxovjdy" path="res://scenes/extractor.tscn" id="8_kqfnp"]
-[ext_resource type="PackedScene" uid="uid://2pbxixvwni55" path="res://scenes/build_button.tscn" id="8_mwmn1"]
-[ext_resource type="Script" path="res://ResourceSelectionPopup.gd" id="11_gjpu0"]
-[ext_resource type="PackedScene" uid="uid://c7g16mw2mhn8w" path="res://scenes/resource_selection_row_button.tscn" id="12_244ao"]
+[ext_resource type="Script" path="res://scripts/classes/TileMap.gd" id="4_bcrix"]
+[ext_resource type="Script" path="res://scripts/ui/Camera.gd" id="6_2blxb"]
+[ext_resource type="PackedScene" uid="uid://2pbxixvwni55" path="res://scenes/ui/build_button.tscn" id="7_066ti"]
+[ext_resource type="Script" path="res://scripts/ui/BuildMenu.gd" id="7_p4xhu"]
+[ext_resource type="PackedScene" uid="uid://c5u4hhoxovjdy" path="res://scenes/buildings/extractor.tscn" id="9_16g08"]
+[ext_resource type="PackedScene" uid="uid://chg6jj3nq3xlx" path="res://scenes/buildings/transporter.tscn" id="10_l3gyv"]
+[ext_resource type="PackedScene" uid="uid://1wfoto2x1h7v" path="res://scenes/buildings/store.tscn" id="11_5lqpc"]
+[ext_resource type="Script" path="res://scripts/ui/tooltips/Tooltip.gd" id="11_qpeew"]
+[ext_resource type="Script" path="res://scripts/ui/ResourceSelectionPopup.gd" id="12_atixr"]
+[ext_resource type="PackedScene" uid="uid://mqmf1hdf6jua" path="res://scenes/buildings/distributor.tscn" id="12_q34jy"]
+[ext_resource type="PackedScene" uid="uid://c7g16mw2mhn8w" path="res://scenes/ui/resource_selection_row_button.tscn" id="14_rg0y7"]
+[ext_resource type="Script" path="res://scripts/enemy/EnemySpawner.gd" id="16_00h1b"]
+[ext_resource type="Texture2D" uid="uid://lmfqpwliqdop" path="res://images/spawner/0001.png" id="17_om8rd"]
+[ext_resource type="PackedScene" uid="uid://bwryupxym3v12" path="res://scenes/enemies/enemy.tscn" id="17_wqf7u"]
+[ext_resource type="Texture2D" uid="uid://ndfn4jk3k20m" path="res://images/spawner/0002.png" id="18_8vfi7"]
+[ext_resource type="Texture2D" uid="uid://cp54qsdrdpk80" path="res://images/spawner/0003.png" id="19_qanfq"]
+[ext_resource type="Texture2D" uid="uid://cgxeedobdd0x8" path="res://images/spawner/0004.png" id="20_2g0ri"]
+[ext_resource type="Texture2D" uid="uid://dqcm5acrrx8a1" path="res://images/spawner/0005.png" id="21_0qcrw"]
+[ext_resource type="Texture2D" uid="uid://bx8we2q6hgh44" path="res://images/spawner/0006.png" id="22_5jh18"]
+[ext_resource type="Texture2D" uid="uid://deo7e3hbf0lmp" path="res://images/spawner/0007.png" id="23_784m8"]
+[ext_resource type="Texture2D" uid="uid://beyp4n8mla2q0" path="res://images/spawner/0008.png" id="24_2ar2y"]
+[ext_resource type="Texture2D" uid="uid://ctrhn4vtc7aro" path="res://images/spawner/0009.png" id="25_wa061"]
+[ext_resource type="Texture2D" uid="uid://cnyhlqcnxd0km" path="res://images/spawner/0010.png" id="26_ov7c5"]
+[ext_resource type="Texture2D" uid="uid://11oov3rkj6pq" path="res://images/spawner/0011.png" id="27_aem4e"]
+[ext_resource type="Texture2D" uid="uid://dx08tjlwyvdp3" path="res://images/spawner/0012.png" id="28_htq8v"]
+[ext_resource type="Texture2D" uid="uid://c8012ebup3aek" path="res://images/spawner/0013.png" id="29_f3kw6"]
+[ext_resource type="Texture2D" uid="uid://f74oldborg1w" path="res://images/spawner/0014.png" id="30_ef4wt"]
+[ext_resource type="Texture2D" uid="uid://g47acny6vcvg" path="res://images/spawner/0015.png" id="31_wg8ft"]
+[ext_resource type="Texture2D" uid="uid://b7bh0447ua52h" path="res://images/spawner/0016.png" id="32_xsuln"]
+[ext_resource type="Texture2D" uid="uid://c67lj5wa6mnn" path="res://images/spawner/0017.png" id="33_1njns"]
+[ext_resource type="Texture2D" uid="uid://6gvux3jnqfn1" path="res://images/spawner/0018.png" id="34_tws8l"]
+[ext_resource type="Texture2D" uid="uid://byw3sfsgtf4od" path="res://images/spawner/0019.png" id="35_76jn1"]
+[ext_resource type="Texture2D" uid="uid://b186kytiisj2u" path="res://images/spawner/0020.png" id="36_qw6ce"]
+[ext_resource type="Texture2D" uid="uid://ciju7h4lp3mtj" path="res://images/spawner/0021.png" id="37_c1wrf"]
+[ext_resource type="Texture2D" uid="uid://b168p21qcuc0d" path="res://images/spawner/0022.png" id="38_gsolh"]
+[ext_resource type="Texture2D" uid="uid://bsd1wd2guhy3c" path="res://images/spawner/0023.png" id="39_68je3"]
+[ext_resource type="Texture2D" uid="uid://d18wpkyfat762" path="res://images/spawner/0024.png" id="40_3uuet"]
+[ext_resource type="Texture2D" uid="uid://on3jiyylfp62" path="res://images/spawner/0025.png" id="41_bqr5m"]
+[ext_resource type="Texture2D" uid="uid://chbh0851e6ji6" path="res://images/spawner/0026.png" id="42_k15bk"]
+[ext_resource type="Texture2D" uid="uid://ccre0amyqlu6s" path="res://images/spawner/0027.png" id="43_nt8pp"]
+[ext_resource type="Texture2D" uid="uid://doyqf8bnkh01w" path="res://images/spawner/0028.png" id="44_mrq88"]
+[ext_resource type="Texture2D" uid="uid://ctatskqqlhdgf" path="res://images/spawner/0029.png" id="45_uc0fq"]
+[ext_resource type="Texture2D" uid="uid://cp7hvf0svygqu" path="res://images/spawner/0030.png" id="46_6kvsv"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_t0yfo"]
+vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_h385r"]
+vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3lxrn"]
+vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mwikt"]
+vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rknx1"]
+vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kfaxe"]
 texture = ExtResource("1_lbvaa")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_t0yfo")
+0:0/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_h385r")
 1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_3lxrn")
+1:0/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_mwikt")
 0:1/0 = 0
 1:1/0 = 0
+1:1/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_rknx1")
 
 [sub_resource type="TileSet" id="TileSet_pkd5h"]
 tile_size = Vector2i(128, 128)
+navigation_layer_0/layers = 1
+navigation_layer_1/layers = 2
 sources/0 = SubResource("TileSetAtlasSource_kfaxe")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_51d6q"]
@@ -40,6 +106,104 @@ seed = 3
 fractal_octaves = 2
 fractal_gain = 0.1
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0yrw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_om8rd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_8vfi7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_qanfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_2g0ri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_0qcrw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_5jh18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_784m8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_2ar2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_wa061")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_ov7c5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_aem4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_htq8v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_f3kw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_ef4wt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_wg8ft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_xsuln")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_1njns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_tws8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_76jn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_qw6ce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_c1wrf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_gsolh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_68je3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_3uuet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_bqr5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_k15bk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_nt8pp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_mrq88")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_uc0fq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_6kvsv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
 [node name="Control" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -49,12 +213,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p6bop")
-core_scene = ExtResource("2_omuca")
 
 [node name="World" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_pkd5h")
 format = 2
-script = ExtResource("2_qs14y")
+layer_0/tile_data = PackedInt32Array(327681, 0, 0, 327680, 0, 0, 327683, 65536, 0, 327684, 65536, 0, 458752, 0, 1, 458753, 0, 1, 458755, 65536, 1, 458756, 65536, 1, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 393223, 0, 0, 393222, 0, 0, 393221, 0, 0, 393220, 0, 0, 393219, 0, 0, 393218, 0, 0, 393217, 0, 0, 393216, 0, 0, 327682, 0, 0, 524290, 0, 0, 458754, 0, 0, 524288, 0, 1, 524289, 0, 1, 524291, 0, 1, 524292, 0, 1, 524293, 0, 1, 524294, 0, 1, 458757, 0, 1, 458758, 0, 1, 524295, 0, 1, 458759, 0, 1)
+script = ExtResource("4_bcrix")
 stone = SubResource("FastNoiseLite_51d6q")
 wall = SubResource("FastNoiseLite_xrgin")
 water = SubResource("FastNoiseLite_vfymy")
@@ -63,39 +227,20 @@ resource = ExtResource("3_unsmu")
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3
 zoom = Vector2(0.5, 0.5)
-script = ExtResource("4_r7xkf")
+script = ExtResource("6_2blxb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
-
-[node name="TopMenu" type="PanelContainer" parent="CanvasLayer"]
-offset_right = 113.0
-offset_bottom = 61.0
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TopMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/TopMenu/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TopMenu/MarginContainer/HFlowContainer"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="CanvasLayer/TopMenu/MarginContainer/HFlowContainer/HBoxContainer"]
-layout_mode = 2
-text = "Inventory"
 
 [node name="BuildMenu" type="PanelContainer" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -61.0
-offset_bottom = 86.0
+offset_left = -20.0
+offset_bottom = 146.0
 grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/BuildMenu"]
 layout_mode = 2
@@ -108,16 +253,20 @@ theme_override_constants/margin_bottom = 10
 [node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/BuildMenu/MarginContainer"]
 layout_mode = 2
 alignment = 1
-script = ExtResource("7_yk6pv")
-build_button_scene = ExtResource("8_mwmn1")
-default_buildings = Array[PackedScene]([ExtResource("8_kqfnp")])
+script = ExtResource("7_p4xhu")
+build_button_scene = ExtResource("7_066ti")
+default_buildings = Array[PackedScene]([ExtResource("9_16g08"), ExtResource("10_l3gyv"), ExtResource("11_5lqpc"), ExtResource("12_q34jy")])
 
 [node name="Tooltip" type="PanelContainer" parent="CanvasLayer"]
 process_mode = 3
-offset_right = 91.0
-offset_bottom = 126.0
+offset_left = 499.0
+offset_top = 300.0
+offset_right = 581.0
+offset_bottom = 340.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
-script = ExtResource("5_evqjw")
+script = ExtResource("11_qpeew")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Tooltip"]
 layout_mode = 2
@@ -140,14 +289,14 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="BottomMenu" type="PanelContainer" parent="CanvasLayer"]
-visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -128.0
+offset_top = -147.0
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_vertical = 8
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/BottomMenu"]
 layout_mode = 2
@@ -162,12 +311,19 @@ size_flags_vertical = 1
 
 [node name="ResourceSelectionPopup" type="PanelContainer" parent="CanvasLayer"]
 process_mode = 3
-offset_left = 413.0
-offset_top = 300.0
-offset_right = 604.0
-offset_bottom = 397.0
-script = ExtResource("11_gjpu0")
-row_scene = ExtResource("12_244ao")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -180.0
+offset_right = 96.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_atixr")
+row_scene = ExtResource("14_rg0y7")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ResourceSelectionPopup"]
 layout_mode = 2
@@ -189,6 +345,7 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Choose a Resource to Build With:"
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="CancelButton" type="Button" parent="CanvasLayer/ResourceSelectionPopup/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -199,3 +356,20 @@ size_flags_vertical = 0
 text = "X"
 
 [node name="Tick" type="Node" parent="."]
+
+[node name="Trash" type="Node" parent="."]
+process_mode = 4
+
+[node name="EnemySpawner" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+script = ExtResource("16_00h1b")
+enemies = Array[PackedScene]([ExtResource("17_wqf7u")])
+title = "Enemy Spawner"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemySpawner"]
+modulate = Color(0.611765, 0, 0, 1)
+sprite_frames = SubResource("SpriteFrames_m0yrw")
+autoplay = "default"
+centered = false

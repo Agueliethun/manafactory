@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://2pbxixvwni55"]
+
+[ext_resource type="Script" path="res://scripts/ui/BuildButton.gd" id="1_h3nvq"]
+
+[node name="BuildButton" type="Button"]
+text = "Extractor"
+script = ExtResource("1_h3nvq")

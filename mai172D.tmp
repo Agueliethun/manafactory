@@ -1,0 +1,196 @@
+[gd_scene load_steps=20 format=3 uid="uid://cvw5hcjay3t66"]
+
+[ext_resource type="Texture2D" uid="uid://b3cx6t0rbt4vq" path="res://tilemaps/tileset.png" id="1_lbvaa"]
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_p6bop"]
+[ext_resource type="PackedScene" uid="uid://2q2lj5xo2ynu" path="res://scenes/buildings/core.tscn" id="2_vh60h"]
+[ext_resource type="PackedScene" uid="uid://cb3mh862u6hei" path="res://scenes/resource.tscn" id="3_unsmu"]
+[ext_resource type="Script" path="res://scripts/classes/TileMap.gd" id="4_bcrix"]
+[ext_resource type="Script" path="res://scripts/ui/Camera.gd" id="6_2blxb"]
+[ext_resource type="Script" path="res://scripts/ui/BuildMenu.gd" id="7_p4xhu"]
+[ext_resource type="PackedScene" uid="uid://2pbxixvwni55" path="res://scenes/build_button.tscn" id="8_mwmn1"]
+[ext_resource type="PackedScene" uid="uid://c5u4hhoxovjdy" path="res://scenes/buildings/extractor.tscn" id="9_16g08"]
+[ext_resource type="PackedScene" uid="uid://chg6jj3nq3xlx" path="res://scenes/buildings/transporter.tscn" id="10_l3gyv"]
+[ext_resource type="PackedScene" uid="uid://1wfoto2x1h7v" path="res://scenes/buildings/store.tscn" id="11_5lqpc"]
+[ext_resource type="Script" path="res://scripts/ui/tooltips/Tooltip.gd" id="11_qpeew"]
+[ext_resource type="PackedScene" uid="uid://c7g16mw2mhn8w" path="res://scenes/resource_selection_row_button.tscn" id="12_244ao"]
+[ext_resource type="Script" path="res://scripts/ui/ResourceSelectionPopup.gd" id="12_atixr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kfaxe"]
+texture = ExtResource("1_lbvaa")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_pkd5h"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_kfaxe")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_51d6q"]
+frequency = 0.003
+fractal_octaves = 6
+fractal_lacunarity = 3.0
+fractal_gain = 0.4
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xrgin"]
+frequency = 0.006
+fractal_gain = 0.6
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vfymy"]
+seed = 3
+fractal_octaves = 2
+fractal_gain = 0.1
+
+[node name="Control" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p6bop")
+core_scene = ExtResource("2_vh60h")
+
+[node name="World" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_pkd5h")
+format = 2
+script = ExtResource("4_bcrix")
+stone = SubResource("FastNoiseLite_51d6q")
+wall = SubResource("FastNoiseLite_xrgin")
+water = SubResource("FastNoiseLite_vfymy")
+resource = ExtResource("3_unsmu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_mode = 3
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("6_2blxb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="BuildMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_bottom = 146.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/BuildMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/BuildMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("7_p4xhu")
+build_button_scene = ExtResource("8_mwmn1")
+default_buildings = Array[PackedScene]([ExtResource("9_16g08"), ExtResource("10_l3gyv"), ExtResource("11_5lqpc")])
+
+[node name="Tooltip" type="PanelContainer" parent="CanvasLayer"]
+process_mode = 3
+offset_left = 499.0
+offset_top = 300.0
+offset_right = 581.0
+offset_bottom = 340.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+script = ExtResource("11_qpeew")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Tooltip"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VF" type="VBoxContainer" parent="CanvasLayer/Tooltip/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/Tooltip/MarginContainer/VF"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Resource"
+horizontal_alignment = 1
+
+[node name="Container" type="HFlowContainer" parent="CanvasLayer/Tooltip/MarginContainer/VF"]
+layout_mode = 2
+
+[node name="BottomMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -147.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/BottomMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Description" type="Label" parent="CanvasLayer/BottomMenu/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="ResourceSelectionPopup" type="PanelContainer" parent="CanvasLayer"]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -180.0
+offset_right = 96.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_atixr")
+row_scene = ExtResource("12_244ao")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ResourceSelectionPopup"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ResourceSelectionPopup/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ResourceSelectionPopup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/ResourceSelectionPopup/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Choose a Resource to Build With:"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/ResourceSelectionPopup/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "X"
+
+[node name="Tick" type="Node" parent="."]
