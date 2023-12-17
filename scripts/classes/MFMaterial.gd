@@ -21,9 +21,7 @@ var magic : float = 0.0
 static func get_material_by_id(mat_id : int) -> MFMaterial:
 	return materials[mat_id]
 
-static func generate_materials() -> Dictionary:
-	var rng = RandomNumberGenerator.new()
-	
+static func generate_materials() -> Dictionary:	
 	var total = low_quality + med_quality + hi_quality
 	for i in total:
 		var quality
@@ -48,10 +46,11 @@ static func generate_materials() -> Dictionary:
 		
 		add_material(mat)
 	
+	var q = 2.0
 	var mat = MFMaterial.new()
-	mat.strength = 0.25
-	mat.magic = 0.25
-	mat.volatility = 0.25
+	mat.strength = q
+	mat.magic = q
+	mat.volatility = q
 	add_material(mat)
 	
 	return materials

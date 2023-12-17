@@ -10,7 +10,7 @@ func get_content_table():
 	
 	var table = content_table.instantiate()
 	table.max_health = max_health.return_value
-	table.health = health
+	table.health = self
 	return table
 
 func place(pos : Vector2i, material : MFMaterial):

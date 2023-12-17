@@ -14,6 +14,11 @@ static var facings = [
 
 @export var cost : BuildingCost
 
+@export var description := ""
+
+var tile_pos
+var placed = false
+
 var facing = facings[0]
 
 func valid_placement(settings, world):
@@ -61,28 +66,36 @@ func rotate(amount):
 func _gui_input(event):
 	if event is InputEventMouseButton:
 		if event.is_action("secondary") and event.is_action_released("secondary") and !required:
-			for child in get_children():
-				if child.has_method("leaving_tree"):
-					child.leaving_tree()
-			hide_tooltip()
-			visible = false
-			reparent($"/root/Control/Trash")
-			$"/root/Control/World".remove_building(tile_pos)
+			destroy()
 		elif event.is_action("primary") and event.is_action_pressed("primary"):
 			for child in get_children():
 				if child is BuildingModule:
 					child.clicked()
 
-@export var description := ""
+func damage(amount):
+	for child in get_children():
+		if child is Health:
+			child.health -= amount
+			
+			if child.health <= 0.0:
+				destroy()
+			return
 
-var placed = false
-var tile_pos
+func destroy():
+	for child in get_children():
+		if child.has_method("leaving_tree"):
+			child.leaving_tree()
+		hide_tooltip()
+		visible = false
+		reparent($"/root/Control/Trash")
+		$"/root/Control/World".remove_building(tile_pos)
 
 func place(pos, settings):
-	placed = true
-	tile_pos = pos
+	set_mfmaterial(settings.material)
+	tile_pos = settings.start
 	
 	var material = get_mfmaterial()
+	placed = true
 	
 	for child in get_children():
 		if child is AnimatedSprite2D:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://bwryupxym3v12"]
+[gd_scene load_steps=72 format=3 uid="uid://bwryupxym3v12"]
 
 [ext_resource type="Script" path="res://scripts/enemy/Enemy.gd" id="1_u4jgq"]
 [ext_resource type="Script" path="res://scripts/stats/MaterialValueProvider.gd" id="2_mt4oo"]
@@ -79,13 +79,21 @@ operation = 0
 
 [sub_resource type="Resource" id="Resource_nxwdm"]
 script = ExtResource("4_jh815")
-value = 15.0
+value = 1.0
 
 [sub_resource type="Resource" id="Resource_xinqd"]
 script = ExtResource("3_2fbwk")
 a = SubResource("Resource_lmobe")
 b = SubResource("Resource_nxwdm")
 operation = 2
+
+[sub_resource type="Resource" id="Resource_qf7aj"]
+script = ExtResource("4_jh815")
+value = 1.0
+
+[sub_resource type="Resource" id="Resource_hp5mi"]
+script = ExtResource("4_jh815")
+value = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dy6av"]
 animations = [{
@@ -244,17 +252,43 @@ a = SubResource("Resource_ibwyc")
 b = SubResource("Resource_b3qkw")
 operation = 2
 
-[sub_resource type="Resource" id="Resource_74s3t"]
+[sub_resource type="Resource" id="Resource_hywkr"]
 script = ExtResource("4_jh815")
-value = 10.0
+value = 2.0
+
+[sub_resource type="Resource" id="Resource_cidm0"]
+script = ExtResource("4_jh815")
+value = 15.0
+
+[sub_resource type="Resource" id="Resource_xd0bq"]
+script = ExtResource("2_mt4oo")
+material_value = 0
+
+[sub_resource type="Resource" id="Resource_nxp56"]
+script = ExtResource("3_2fbwk")
+a = SubResource("Resource_cidm0")
+b = SubResource("Resource_xd0bq")
+operation = 2
+
+[sub_resource type="Resource" id="Resource_qh7kb"]
+script = ExtResource("3_2fbwk")
+a = SubResource("Resource_hywkr")
+b = SubResource("Resource_nxp56")
+operation = 0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ioh57"]
+radius = 30.0
 
 [node name="Enemy" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 128.0
 offset_bottom = 128.0
+pivot_offset = Vector2(64, 64)
 script = ExtResource("1_u4jgq")
 cost = SubResource("Resource_xinqd")
+attack_speed = SubResource("Resource_qf7aj")
+damage_p = SubResource("Resource_hp5mi")
 title = "Enemy"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -276,7 +310,7 @@ anchors_preset = 0
 offset_right = 128.0
 offset_bottom = 128.0
 script = ExtResource("5_ulkni")
-max_health = SubResource("Resource_74s3t")
+max_health = SubResource("Resource_qh7kb")
 title = "Health"
 
 [node name="ProgressBar" type="ProgressBar" parent="Health"]
@@ -293,3 +327,9 @@ max_value = 10.0
 value = 7.0
 show_percentage = false
 script = ExtResource("6_finru")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(64, 64)
+shape = SubResource("CircleShape2D_ioh57")

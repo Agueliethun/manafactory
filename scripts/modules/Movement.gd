@@ -22,5 +22,6 @@ func _process(delta):
 	if !target:
 		return
 		
-	var velocity = (target - global_position).normalized() * speed.return_value * delta
-	get_parent().position += velocity
+	var velocity = (target - global_position).normalized() * speed.return_value
+	get_parent().velocity = velocity
+	get_parent().position += velocity * delta

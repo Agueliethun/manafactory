@@ -1,6 +1,7 @@
 class_name BuildingModule extends Tooltippable
 
 var resource_move_scene := preload("res://scenes/ui/resource_movement_icon.tscn")
+var tile_pos
 
 @export var placement : BuildingPlacement
 
@@ -18,8 +19,6 @@ static var DIRECTIONS_FROM_FACING = {
 	"RIGHT" : 2,
 	"DOWN" : 3
 }
-
-var tile_pos
 
 func get_placement():
 	return placement

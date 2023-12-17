@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://cvw5hcjay3t66"]
+[gd_scene load_steps=60 format=3 uid="uid://cvw5hcjay3t66"]
 
 [ext_resource type="Texture2D" uid="uid://b3cx6t0rbt4vq" path="res://tilemaps/tileset.png" id="1_lbvaa"]
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_p6bop"]
@@ -52,31 +52,26 @@
 vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h385r"]
 vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3lxrn"]
 vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mwikt"]
 vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rknx1"]
 vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kfaxe"]
 texture = ExtResource("1_lbvaa")
@@ -209,6 +204,8 @@ animations = [{
 "name": &"default",
 "speed": 24.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lhyj0"]
 
 [node name="Control" type="Control"]
 process_mode = 3
@@ -379,3 +376,8 @@ modulate = Color(0.611765, 0, 0, 1)
 sprite_frames = SubResource("SpriteFrames_m0yrw")
 autoplay = "default"
 centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_lhyj0")

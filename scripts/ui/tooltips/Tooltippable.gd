@@ -31,7 +31,25 @@ func show_tooltip():
 	if visible and !get_parent() is Tooltippable:
 		hovering = true
 		$/root/Control/CanvasLayer/Tooltip.show_tooltip(self)
+		
+		for child in get_children():
+			if child is Tooltippable:
+				child.on_show()
 
 func hide_tooltip():
 	hovering = false
 	$/root/Control/CanvasLayer/Tooltip.hide_tooltip(self)
+	
+	for child in get_children():
+			if child is Tooltippable:
+				child.on_hide()
+
+func on_show():
+	for child in get_children():
+		if child is Tooltippable:
+			child.on_show()
+
+func on_hide():
+	for child in get_children():
+		if child is Tooltippable:
+			child.on_hide()
