@@ -92,7 +92,7 @@ func destroy():
 
 func place(pos, settings):
 	set_mfmaterial(settings.material)
-	tile_pos = settings.start
+	tile_pos = pos
 	
 	var material = get_mfmaterial()
 	placed = true

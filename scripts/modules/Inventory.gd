@@ -26,6 +26,9 @@ func place(pos, material):
 	inventory_size = 0
 
 func clicked():
+	if get_parent().name == "Core":
+		return
+	
 	var item = get_first_material()
 	
 	if item == null:

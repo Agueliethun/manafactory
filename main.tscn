@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://cvw5hcjay3t66"]
+[gd_scene load_steps=54 format=3 uid="uid://cvw5hcjay3t66"]
 
 [ext_resource type="Texture2D" uid="uid://b3cx6t0rbt4vq" path="res://tilemaps/tileset.png" id="1_lbvaa"]
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_p6bop"]
@@ -48,53 +48,17 @@
 [ext_resource type="Texture2D" uid="uid://ctatskqqlhdgf" path="res://images/spawner/0029.png" id="45_uc0fq"]
 [ext_resource type="Texture2D" uid="uid://cp7hvf0svygqu" path="res://images/spawner/0030.png" id="46_6kvsv"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_t0yfo"]
-vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_h385r"]
-vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_3lxrn"]
-vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_mwikt"]
-vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_rknx1"]
-vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kfaxe"]
+resource_name = "vis"
 texture = ExtResource("1_lbvaa")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_t0yfo")
-0:0/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_h385r")
 1:0/0 = 0
-1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_3lxrn")
-1:0/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_mwikt")
 0:1/0 = 0
 1:1/0 = 0
-1:1/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_rknx1")
 
 [sub_resource type="TileSet" id="TileSet_pkd5h"]
 tile_size = Vector2i(128, 128)
-navigation_layer_0/layers = 1
-navigation_layer_1/layers = 2
 sources/0 = SubResource("TileSetAtlasSource_kfaxe")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_51d6q"]
@@ -223,7 +187,13 @@ script = ExtResource("1_p6bop")
 [node name="World" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_pkd5h")
 format = 2
+layer_0/name = "visible"
+layer_0/navigation_enabled = false
 layer_0/tile_data = PackedInt32Array(327681, 0, 0, 327680, 0, 0, 327683, 65536, 0, 327684, 65536, 0, 458752, 0, 1, 458753, 0, 1, 458755, 65536, 1, 458756, 65536, 1, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 393223, 0, 0, 393222, 0, 0, 393221, 0, 0, 393220, 0, 0, 393219, 0, 0, 393218, 0, 0, 393217, 0, 0, 393216, 0, 0, 327682, 0, 0, 524290, 0, 0, 458754, 0, 0, 524288, 0, 1, 524289, 0, 1, 524291, 0, 1, 524292, 0, 1, 524293, 0, 1, 524294, 0, 1, 458757, 0, 1, 458758, 0, 1, 524295, 0, 1, 458759, 0, 1)
+layer_1/name = "collision"
+layer_1/z_index = -1
+layer_1/navigation_enabled = false
+layer_1/tile_data = PackedInt32Array()
 script = ExtResource("4_bcrix")
 stone = SubResource("FastNoiseLite_51d6q")
 wall = SubResource("FastNoiseLite_xrgin")

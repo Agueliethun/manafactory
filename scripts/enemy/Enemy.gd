@@ -11,6 +11,7 @@ var velocity := Vector2()
 
 var target : Vector2
 var target_building : Building
+var moving_to_target = true
 
 var tile_pos
 
@@ -32,35 +33,34 @@ func place(pos, mat):
 		if child is BuildingModule:
 			child.place(pos, material)
 	
-	var from = global_position
 	target_building = $"/root/Control/".core
-	var to = target_building.global_position
-	path = NavigationServer2D.map_get_path(get_world_2d().navigation_map, from, to, true)
+	path = $"/root/Control/World".get_nav_path(global_position, target_building.global_position)
+	if path and path.size() > 0:
+		target = path.pop_front()
 	pass
 	
 
 func _process(delta):
-	if !target:
-		if path and path.size() > 0:
-			target = path.pop_front()
-
-	var dist = abs(target.distance_to(global_position))
-	if dist <= 35.0:
-		if path and path.size() > 0:
-			target = path.pop_front()
-		else:
-			dist = abs(target_building.global_position.distance_to(global_position))
-			
-			if dist <= 35:
-				attack_timer += delta
-				
-				if attack_timer >= attack_speed.return_value:
-					attack()
-					attack_timer = 0.0
+	var building_dist = abs(target_building.global_position.distance_to(global_position))
+	var dist = min(building_dist, abs(target.distance_to(global_position)))
+	
+	if dist <= 2.5:
+		if moving_to_target and building_dist >= 140:
+			if path and path.size() > 0:
+				target = path.pop_front()
 			else:
-				path = NavigationServer2D.map_get_path(get_world_2d().navigation_map, global_position, target_building.global_position, true)
-				pass
-				
+				path = $"/root/Control/World".get_nav_path(global_position, target_building.global_position)		
+	else:
+		if building_dist <= 140:
+			$Movement.stop = true
+			moving_to_target = false
+			
+			attack_timer += delta
+			
+			if attack_timer >= attack_speed.return_value:
+				attack()
+				attack_timer = 0.0
+	
 	if target:
 		$Movement.target = target
 

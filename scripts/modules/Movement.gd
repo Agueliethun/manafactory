@@ -3,7 +3,8 @@ class_name Movement extends BuildingModule
 @export var speed : StatProvider
 @export var layer := 1
 
-var target : Vector2
+var target
+var stop = false
 
 var content_table := preload("res://scenes/ui/movement_tooltip.tscn")
 
@@ -19,7 +20,8 @@ func place(pos : Vector2i, material : MFMaterial):
 	speed.get_value(material)
 
 func _process(delta):
-	if !target:
+	if !target or stop:
+		get_parent().velocity = Vector2()
 		return
 		
 	var velocity = (target - global_position).normalized() * speed.return_value
