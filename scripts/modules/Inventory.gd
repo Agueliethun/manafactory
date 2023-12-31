@@ -81,3 +81,7 @@ func get_free_space():
 
 func get_amount():
 	return inventory_size
+
+func set_mf_material(mat_id):
+	var material = MFMaterial.get_material_by_id(mat_id)
+	max_size.get_value(material)

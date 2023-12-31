@@ -1,7 +1,9 @@
 class_name MFMaterial extends Tooltippable
 
-static var low_quality := 0
-static var med_quality := 0
+static var debug_mid = false
+
+static var low_quality := 3
+static var med_quality := 1
 static var hi_quality := 0
 
 static var materials := {}
@@ -46,12 +48,13 @@ static func generate_materials() -> Dictionary:
 		
 		add_material(mat)
 	
-	var q = 2.0
-	var mat = MFMaterial.new()
-	mat.strength = q
-	mat.magic = q
-	mat.volatility = q
-	add_material(mat)
+	if debug_mid:
+		var q = 2.0
+		var mat = MFMaterial.new()
+		mat.strength = q
+		mat.magic = q
+		mat.volatility = q
+		add_material(mat)
 	
 	return materials
 

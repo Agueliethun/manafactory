@@ -167,6 +167,7 @@ func build_building(pos):
 func remove_build_data():
 	update_tutorial()
 	
+	building.hide_tooltip()
 	building.queue_free()
 	building = null
 	build_settings = null

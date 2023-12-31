@@ -8,6 +8,8 @@ func set_mfmaterial(mat_id):
 	for child in get_children():
 		if child is AnimatedSprite2D:
 			child.modulate = get_mfmaterial().get_color()
+		if child is BuildingModule:
+			child.set_mf_material(mat_id)
 
 func get_mfmaterial():
 	if mat_id == null:

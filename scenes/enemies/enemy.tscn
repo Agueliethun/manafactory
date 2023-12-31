@@ -79,7 +79,7 @@ operation = 0
 
 [sub_resource type="Resource" id="Resource_nxwdm"]
 script = ExtResource("4_jh815")
-value = 1.0
+value = 5.0
 
 [sub_resource type="Resource" id="Resource_xinqd"]
 script = ExtResource("3_2fbwk")
@@ -238,20 +238,6 @@ animations = [{
 "speed": 24.0
 }]
 
-[sub_resource type="Resource" id="Resource_ibwyc"]
-script = ExtResource("4_jh815")
-value = 100.0
-
-[sub_resource type="Resource" id="Resource_b3qkw"]
-script = ExtResource("2_mt4oo")
-material_value = 1
-
-[sub_resource type="Resource" id="Resource_q7b3u"]
-script = ExtResource("3_2fbwk")
-a = SubResource("Resource_ibwyc")
-b = SubResource("Resource_b3qkw")
-operation = 2
-
 [sub_resource type="Resource" id="Resource_hywkr"]
 script = ExtResource("4_jh815")
 value = 2.0
@@ -271,10 +257,26 @@ b = SubResource("Resource_xd0bq")
 operation = 2
 
 [sub_resource type="Resource" id="Resource_qh7kb"]
+resource_local_to_scene = true
 script = ExtResource("3_2fbwk")
 a = SubResource("Resource_hywkr")
 b = SubResource("Resource_nxp56")
 operation = 0
+
+[sub_resource type="Resource" id="Resource_ibwyc"]
+script = ExtResource("4_jh815")
+value = 100.0
+
+[sub_resource type="Resource" id="Resource_b3qkw"]
+script = ExtResource("2_mt4oo")
+material_value = 1
+
+[sub_resource type="Resource" id="Resource_q7b3u"]
+resource_local_to_scene = true
+script = ExtResource("3_2fbwk")
+a = SubResource("Resource_ibwyc")
+b = SubResource("Resource_b3qkw")
+operation = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ioh57"]
 radius = 30.0
@@ -296,13 +298,6 @@ sprite_frames = SubResource("SpriteFrames_dy6av")
 autoplay = "default"
 frame_progress = 0.517254
 centered = false
-
-[node name="Movement" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("50_qbjve")
-speed = SubResource("Resource_q7b3u")
 
 [node name="Health" type="Control" parent="."]
 layout_mode = 3
@@ -327,6 +322,13 @@ max_value = 10.0
 value = 7.0
 show_percentage = false
 script = ExtResource("6_finru")
+
+[node name="Movement" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("50_qbjve")
+speed = SubResource("Resource_q7b3u")
 
 [node name="Area2D" type="Area2D" parent="."]
 

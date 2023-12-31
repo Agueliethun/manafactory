@@ -41,6 +41,7 @@
 
 [sub_resource type="Resource" id="Resource_ksr07"]
 script = ExtResource("2_pi4u3")
+amount = 1
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gxvek"]
 animations = [{
@@ -159,12 +160,14 @@ b = SubResource("Resource_5p44r")
 operation = 2
 
 [sub_resource type="Resource" id="Resource_60sdt"]
+resource_local_to_scene = true
 script = ExtResource("36_d3y5f")
 a = SubResource("Resource_yf7v2")
 b = SubResource("Resource_abd6l")
 operation = 0
 
 [sub_resource type="Resource" id="Resource_8e2wc"]
+resource_local_to_scene = true
 script = ExtResource("33_lsvfi")
 
 [sub_resource type="Resource" id="Resource_vp0y8"]
@@ -186,6 +189,7 @@ b = SubResource("Resource_vlx8m")
 operation = 2
 
 [sub_resource type="Resource" id="Resource_pinx3"]
+resource_local_to_scene = true
 script = ExtResource("36_d3y5f")
 a = SubResource("Resource_vp0y8")
 b = SubResource("Resource_1betv")
@@ -199,8 +203,8 @@ offset_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_wwaxf")
-description = "Stores resources. Storage size scales with magic."
 cost = SubResource("Resource_ksr07")
+description = "Stores resources. Storage size scales with magic."
 title = "Store"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]

@@ -46,10 +46,11 @@ func _process(delta):
 	
 	if dist <= 2.5:
 		if moving_to_target and building_dist >= 140:
-			if path and path.size() > 0:
+			path = $"/root/Control/World".get_nav_path(global_position, target_building.global_position)
+			path.pop_front()
+			
+			if path.size() > 0:
 				target = path.pop_front()
-			else:
-				path = $"/root/Control/World".get_nav_path(global_position, target_building.global_position)		
 	else:
 		if building_dist <= 140:
 			$Movement.stop = true

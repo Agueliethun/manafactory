@@ -18,6 +18,10 @@ func place(pos, material : MFMaterial):
 	resource.visible = false
 	resource.reparent(self)
 
+func set_mf_material(mat_id):
+	var material = MFMaterial.get_material_by_id(mat_id)
+	speed.get_value(material)
+
 func get_content_table():
 	var label = Label.new()
 	var speed_val = speed.return_value

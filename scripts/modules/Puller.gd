@@ -1,9 +1,17 @@
 class_name Puller extends BuildingModule
 
+var content_table : PackedScene = preload("res://scenes/ui/output_tooltip.tscn")
+
 @export var input_time : StatProvider
 @export var direction_offset := 2
 
 var input_timer = 0.0
+
+func get_content_table():
+	var table = content_table.instantiate()
+	table.speed = input_time
+	table.label = "Input Speed: "
+	return table
 
 func place(pos, material):
 	super(pos, material)
@@ -59,3 +67,7 @@ func get_available_inventory() -> Inventory:
 					return inv
 		
 	return null
+
+func set_mf_material(mat_id):
+	var material = MFMaterial.get_material_by_id(mat_id)
+	input_time.get_value(material)

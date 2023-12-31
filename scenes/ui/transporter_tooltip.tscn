@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dofwpg40qb471"]
+
+[ext_resource type="Script" path="res://scripts/ui/tooltips/TransporterTooltip.gd" id="1_l8y0t"]
+
+[node name="TransporterTooltip" type="MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+offset_right = 183.0
+offset_bottom = 33.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_l8y0t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SizeLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Transport Speed: 0.5/s"
+horizontal_alignment = 1
+vertical_alignment = 1

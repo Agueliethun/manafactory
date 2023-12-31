@@ -16,3 +16,7 @@ func get_content_table():
 func place(pos : Vector2i, material : MFMaterial):
 	super(pos, material)
 	health = max_health.get_value(material)
+
+func set_mf_material(mat_id):
+	var material = MFMaterial.get_material_by_id(mat_id)
+	health = max_health.get_value(material)

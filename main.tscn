@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cvw5hcjay3t66"]
+[gd_scene load_steps=55 format=3 uid="uid://cvw5hcjay3t66"]
 
 [ext_resource type="Texture2D" uid="uid://b3cx6t0rbt4vq" path="res://tilemaps/tileset.png" id="1_lbvaa"]
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_p6bop"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cxkw4wvrduv2d" path="res://scenes/buildings/tower.tscn" id="12_amd4k"]
 [ext_resource type="Script" path="res://scripts/ui/ResourceSelectionPopup.gd" id="12_atixr"]
 [ext_resource type="PackedScene" uid="uid://mqmf1hdf6jua" path="res://scenes/buildings/distributor.tscn" id="12_q34jy"]
+[ext_resource type="PackedScene" uid="uid://cvw47p52pueo2" path="res://scenes/buildings/wall.tscn" id="13_i6dex"]
 [ext_resource type="PackedScene" uid="uid://c7g16mw2mhn8w" path="res://scenes/ui/resource_selection_row_button.tscn" id="14_rg0y7"]
 [ext_resource type="Script" path="res://scripts/enemy/EnemySpawner.gd" id="16_00h1b"]
 [ext_resource type="Texture2D" uid="uid://lmfqpwliqdop" path="res://images/spawner/0001.png" id="17_om8rd"]
@@ -231,7 +232,7 @@ layout_mode = 2
 alignment = 1
 script = ExtResource("7_p4xhu")
 build_button_scene = ExtResource("7_066ti")
-default_buildings = Array[PackedScene]([ExtResource("9_16g08"), ExtResource("10_l3gyv"), ExtResource("11_5lqpc"), ExtResource("12_q34jy"), ExtResource("12_amd4k")])
+default_buildings = Array[PackedScene]([ExtResource("9_16g08"), ExtResource("10_l3gyv"), ExtResource("11_5lqpc"), ExtResource("12_q34jy"), ExtResource("12_amd4k"), ExtResource("13_i6dex")])
 
 [node name="Tooltip" type="PanelContainer" parent="CanvasLayer"]
 process_mode = 3

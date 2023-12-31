@@ -33,9 +33,6 @@ func _process(delta):
 func show_tooltip(tt : Tooltippable):
 	title.text = tt.title
 	
-	for child in container.get_children():
-		child.queue_free()
-	
 	tt.add_content_to_table(container)
 	
 	visible = true
@@ -43,7 +40,13 @@ func show_tooltip(tt : Tooltippable):
 	over[tt.tt_id] = true
 
 func hide_tooltip(tt : Tooltippable):
+	if !over.has(tt.tt_id):
+		return
+	
 	over.erase(tt.tt_id)
+	
+	for child in container.get_children():
+		child.queue_free()
 	
 	if over.keys().size() == 0:
 		visible = false

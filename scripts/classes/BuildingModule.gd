@@ -70,5 +70,8 @@ func move_resource(from : Inventory, to : Inventory, speed : float, mat_id : int
 	resource_move.get_node("Icon").modulate = MFMaterial.get_material_by_id(mat_id).get_color()
 	$"/root/Control/Tick".add_child(resource_move)
 
+func set_mf_material(mat_id):
+	pass
+
 func clicked():
 	pass

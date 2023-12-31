@@ -27,3 +27,7 @@ func _process(delta):
 	var velocity = (target - global_position).normalized() * speed.return_value
 	get_parent().velocity = velocity
 	get_parent().position += velocity * delta
+
+func set_mf_material(mat_id):
+	var material = MFMaterial.get_material_by_id(mat_id)
+	speed.get_value(material)

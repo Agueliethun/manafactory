@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://chg6jj3nq3xlx"]
+[gd_scene load_steps=123 format=3 uid="uid://chg6jj3nq3xlx"]
 
 [ext_resource type="Script" path="res://scripts/classes/Building.gd" id="1_ukd8v"]
 [ext_resource type="Script" path="res://scripts/classes/BuildingCost.gd" id="2_0ar4x"]
@@ -393,37 +393,6 @@ animations = [{
 "speed": 24.0
 }]
 
-[sub_resource type="Resource" id="Resource_8diq8"]
-script = ExtResource("96_4s65t")
-value = 10.0
-
-[sub_resource type="Resource" id="Resource_4xqno"]
-script = ExtResource("96_4s65t")
-value = 1.0
-
-[sub_resource type="Resource" id="Resource_qrv2l"]
-script = ExtResource("96_4s65t")
-value = 3.0
-
-[sub_resource type="Resource" id="Resource_bn7cj"]
-script = ExtResource("97_i6l3x")
-material_value = 1
-
-[sub_resource type="Resource" id="Resource_uhqbe"]
-script = ExtResource("98_nim1f")
-a = SubResource("Resource_qrv2l")
-b = SubResource("Resource_bn7cj")
-operation = 2
-
-[sub_resource type="Resource" id="Resource_av2dj"]
-script = ExtResource("98_nim1f")
-a = SubResource("Resource_4xqno")
-b = SubResource("Resource_uhqbe")
-operation = 3
-
-[sub_resource type="Resource" id="Resource_87qsy"]
-script = ExtResource("94_pl1ag")
-
 [sub_resource type="Resource" id="Resource_qqfi8"]
 script = ExtResource("96_4s65t")
 value = 1.5
@@ -433,14 +402,11 @@ script = ExtResource("97_i6l3x")
 material_value = 0
 
 [sub_resource type="Resource" id="Resource_qtsr2"]
+resource_local_to_scene = true
 script = ExtResource("98_nim1f")
 a = SubResource("Resource_qqfi8")
 b = SubResource("Resource_w2cbe")
 operation = 2
-
-[sub_resource type="Resource" id="Resource_1ol1l"]
-script = ExtResource("96_4s65t")
-value = 1.0
 
 [sub_resource type="Resource" id="Resource_i26id"]
 script = ExtResource("96_4s65t")
@@ -461,10 +427,70 @@ b = SubResource("Resource_4tqrk")
 operation = 2
 
 [sub_resource type="Resource" id="Resource_4hrai"]
+resource_local_to_scene = true
 script = ExtResource("98_nim1f")
 a = SubResource("Resource_i26id")
 b = SubResource("Resource_4tuvq")
 operation = 3
+
+[sub_resource type="Resource" id="Resource_yjt1h"]
+script = ExtResource("96_4s65t")
+value = 1.0
+
+[sub_resource type="Resource" id="Resource_5sbsl"]
+script = ExtResource("96_4s65t")
+value = 3.0
+
+[sub_resource type="Resource" id="Resource_fhjvk"]
+script = ExtResource("97_i6l3x")
+material_value = 1
+
+[sub_resource type="Resource" id="Resource_v6bmb"]
+script = ExtResource("98_nim1f")
+a = SubResource("Resource_5sbsl")
+b = SubResource("Resource_fhjvk")
+operation = 2
+
+[sub_resource type="Resource" id="Resource_eouii"]
+resource_local_to_scene = true
+script = ExtResource("98_nim1f")
+a = SubResource("Resource_yjt1h")
+b = SubResource("Resource_v6bmb")
+operation = 0
+
+[sub_resource type="Resource" id="Resource_4xqno"]
+script = ExtResource("96_4s65t")
+value = 1.0
+
+[sub_resource type="Resource" id="Resource_qrv2l"]
+script = ExtResource("96_4s65t")
+value = 3.0
+
+[sub_resource type="Resource" id="Resource_bn7cj"]
+script = ExtResource("97_i6l3x")
+material_value = 1
+
+[sub_resource type="Resource" id="Resource_uhqbe"]
+script = ExtResource("98_nim1f")
+a = SubResource("Resource_qrv2l")
+b = SubResource("Resource_bn7cj")
+operation = 2
+
+[sub_resource type="Resource" id="Resource_av2dj"]
+resource_local_to_scene = true
+script = ExtResource("98_nim1f")
+a = SubResource("Resource_4xqno")
+b = SubResource("Resource_uhqbe")
+operation = 3
+
+[sub_resource type="Resource" id="Resource_87qsy"]
+resource_local_to_scene = true
+script = ExtResource("94_pl1ag")
+
+[sub_resource type="Resource" id="Resource_1ol1l"]
+resource_local_to_scene = true
+script = ExtResource("96_4s65t")
+value = 1.0
 
 [node name="Building" type="Control"]
 layout_mode = 3
@@ -473,7 +499,7 @@ offset_right = 128.0
 offset_bottom = 128.0
 script = ExtResource("1_ukd8v")
 cost = SubResource("Resource_5xeo5")
-description = "Transports resources up to 3 tiles away, pulling from one direction and outputting in the other. Transportation speed scales with magic."
+description = "Transports resources in a direction, pulling from the other direction. Transportation speed scales with magic."
 title = "Transporter"
 
 [node name="DirectionSprite" type="AnimatedSprite2D" parent="."]
@@ -483,16 +509,6 @@ animation = &"LEFT"
 autoplay = "UP"
 centered = false
 
-[node name="Transporter" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 128.0
-offset_bottom = 128.0
-mouse_filter = 2
-script = ExtResource("96_hiuiq")
-range = SubResource("Resource_8diq8")
-output_time = SubResource("Resource_av2dj")
-placement = SubResource("Resource_87qsy")
-
 [node name="Health" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
@@ -500,16 +516,26 @@ offset_bottom = 40.0
 script = ExtResource("94_gc4mi")
 max_health = SubResource("Resource_qtsr2")
 
-[node name="Inventory" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("95_1ti0m")
-max_size = SubResource("Resource_1ol1l")
-
 [node name="Puller" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("97_sbyve")
 input_time = SubResource("Resource_4hrai")
+
+[node name="Transporter" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+mouse_filter = 2
+script = ExtResource("96_hiuiq")
+range = SubResource("Resource_eouii")
+output_time = SubResource("Resource_av2dj")
+placement = SubResource("Resource_87qsy")
+
+[node name="Inventory" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("95_1ti0m")
+max_size = SubResource("Resource_1ol1l")

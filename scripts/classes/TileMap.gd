@@ -42,7 +42,6 @@ func generate():
 	
 	var materials = MFMaterial.generate_materials()
 	
-	
 	for y in range(-size, size):
 		for x in range(-size, size):
 			var pos = Vector2i(x, y)

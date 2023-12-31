@@ -161,17 +161,15 @@ b = SubResource("Resource_5p44r")
 operation = 2
 
 [sub_resource type="Resource" id="Resource_60sdt"]
+resource_local_to_scene = true
 script = ExtResource("36_a165p")
 a = SubResource("Resource_yf7v2")
 b = SubResource("Resource_abd6l")
 operation = 0
 
 [sub_resource type="Resource" id="Resource_8e2wc"]
+resource_local_to_scene = true
 script = ExtResource("37_6v2rs")
-
-[sub_resource type="Resource" id="Resource_dl4j6"]
-script = ExtResource("34_1x28i")
-value = 5.0
 
 [sub_resource type="Resource" id="Resource_prnoj"]
 script = ExtResource("34_1x28i")
@@ -192,10 +190,16 @@ script = ExtResource("34_1x28i")
 value = 3.0
 
 [sub_resource type="Resource" id="Resource_par4w"]
+resource_local_to_scene = true
 script = ExtResource("36_a165p")
 a = SubResource("Resource_55x0r")
 b = SubResource("Resource_ddcoh")
 operation = 3
+
+[sub_resource type="Resource" id="Resource_dl4j6"]
+resource_local_to_scene = true
+script = ExtResource("34_1x28i")
+value = 5.0
 
 [node name="Distributor" type="Control"]
 layout_mode = 3
@@ -205,9 +209,6 @@ offset_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_jj5bo")
-unique = null
-unpause = null
-required = null
 cost = SubResource("Resource_ksr07")
 description = "Distributes resources to surrounding buildings equally. Distribution speed scales with magic."
 title = "Distributor"
@@ -226,16 +227,16 @@ script = ExtResource("33_1hwlc")
 max_health = SubResource("Resource_60sdt")
 placement = SubResource("Resource_8e2wc")
 
-[node name="Inventory" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("38_36pgn")
-max_size = SubResource("Resource_dl4j6")
-
 [node name="Outputter" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("39_svid1")
 output_time = SubResource("Resource_par4w")
+
+[node name="Inventory" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("38_36pgn")
+max_size = SubResource("Resource_dl4j6")

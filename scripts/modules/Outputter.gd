@@ -1,11 +1,19 @@
 class_name Outputter extends BuildingModule
 
+var content_table : PackedScene = preload("res://scenes/ui/output_tooltip.tscn")
+
 @export var output_time : StatProvider
 var output_timer = 0.0
 
 func place(pos, material):
 	super(pos, material)
 	output_time.get_value(material)
+
+func get_content_table():
+	var table = content_table.instantiate()
+	table.speed = output_time
+	table.label = "Output Speed: "
+	return table
 
 func _process(delta):
 	var inventory = get_parent().get_inventory(false, true)
@@ -52,3 +60,7 @@ func get_available_inventory() -> Inventory:
 				return inv
 	
 	return null
+
+func set_mf_material(mat_id):
+	var material = MFMaterial.get_material_by_id(mat_id)
+	output_time.get_value(material)

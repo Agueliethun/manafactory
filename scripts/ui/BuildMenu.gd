@@ -8,8 +8,7 @@ var buildings : Array
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for building in default_buildings:
-		var b_inst = building.instantiate()
-		buildings.append(b_inst)
+		buildings.append(building)
 	
 	update_views()
 	
@@ -19,6 +18,6 @@ func update_views():
 	
 	for building in buildings:
 		var button = build_button_scene.instantiate()
-		button.text = building.title
+		button.text = building.instantiate().title
 		button.building = building
 		add_child(button)

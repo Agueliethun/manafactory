@@ -88,25 +88,22 @@ func destroy():
 		hide_tooltip()
 		visible = false
 		reparent($"/root/Control/Trash")
-		$"/root/Control/World".remove_building(tile_pos)
+		
+		if placed:
+			$"/root/Control/World".remove_building(tile_pos)
 
 func place(pos, settings):
 	set_mfmaterial(settings.material)
-	tile_pos = pos
 	
-	var material = get_mfmaterial()
+	tile_pos = pos
 	placed = true
 	
 	for child in get_children():
-		if child is AnimatedSprite2D:
-			child.modulate = material.get_color()
-	
-	for child in get_children():
 		if child is BuildingModule:
-			child.place(pos, material)
+			child.place(pos, MFMaterial.get_material_by_id(mat_id))
 
 func show_tooltip():
-	if !placed:
+	if mat_id == null:
 		return
 	super.show_tooltip()
 

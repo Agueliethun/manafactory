@@ -1,6 +1,6 @@
 extends Button
 
-var building : Building
+var building : PackedScene
 
 func _pressed():
-	$/root/Control.build(building.duplicate())
+	$/root/Control.build(building.instantiate())

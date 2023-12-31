@@ -103,6 +103,7 @@
 
 [sub_resource type="Resource" id="Resource_5xeo5"]
 script = ExtResource("2_7vtnq")
+amount = 1
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_alc3b"]
 animations = [{
@@ -572,25 +573,30 @@ b = SubResource("Resource_q8w0l")
 operation = 2
 
 [sub_resource type="Resource" id="Resource_4ipht"]
+resource_local_to_scene = true
 script = ExtResource("94_3ik4c")
 a = SubResource("Resource_hgmlb")
 b = SubResource("Resource_oc68x")
 operation = 0
 
+[sub_resource type="Resource" id="Resource_ejnoc"]
+resource_local_to_scene = true
+script = ExtResource("94_a63l0")
+value = 0.05
+
 [sub_resource type="Resource" id="Resource_ygauh"]
+resource_local_to_scene = true
 script = ExtResource("96_1tgmq")
 material_value = 1
 
 [sub_resource type="Resource" id="Resource_3q8ny"]
+resource_local_to_scene = true
 script = ExtResource("95_qt13v")
 
 [sub_resource type="Resource" id="Resource_th3jn"]
+resource_local_to_scene = true
 script = ExtResource("94_a63l0")
 value = 5.0
-
-[sub_resource type="Resource" id="Resource_ejnoc"]
-script = ExtResource("94_a63l0")
-value = 0.05
 
 [node name="Building" type="Control"]
 layout_mode = 3
@@ -598,8 +604,8 @@ anchors_preset = 0
 offset_right = 128.0
 offset_bottom = 128.0
 script = ExtResource("1_1c485")
-description = "Extracts resources from crystals. Extract speed scales with magic."
 cost = SubResource("Resource_5xeo5")
+description = "Extracts resources from crystals. Extract speed scales with magic."
 title = "Extractor"
 
 [node name="Back" type="AnimatedSprite2D" parent="."]
@@ -637,6 +643,13 @@ offset_bottom = 40.0
 script = ExtResource("93_376aq")
 max_health = SubResource("Resource_4ipht")
 
+[node name="Outputter" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("96_brsyv")
+output_time = SubResource("Resource_ejnoc")
+
 [node name="Extractor" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
@@ -652,10 +665,3 @@ offset_bottom = 40.0
 script = ExtResource("98_kk88u")
 max_size = SubResource("Resource_th3jn")
 input = false
-
-[node name="Outputter" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("96_brsyv")
-output_time = SubResource("Resource_ejnoc")
